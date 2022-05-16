@@ -13,7 +13,20 @@ class SolicitacaoRepository implements ISolicitacaoRepository {
 
     }
     async create(data): Promise<any> {
-
+        const obj = this.solicitacao.create({
+            userID: data.userID,
+            NSolicitacao: data.NSolicitacao,
+            nomeUsuario: data.nomeUsuario,
+            cpf: data.cpf,
+            telefone: data.telefone,
+            messengerID: data.messengerID,
+            orgao: data.orgao,
+            servico: data.servico,
+            canal: data.canal,
+            chatSessionID: data.chatSessionID,
+            status: data.status,
+        });
+        await this.solicitacao.save(obj)
     }
     async getSolicitacao(id: any): Promise<any> {
 

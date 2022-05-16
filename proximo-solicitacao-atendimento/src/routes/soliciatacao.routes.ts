@@ -1,4 +1,5 @@
 import { Router } from "express";
+import createSolicitacaoController from "../app/useCases/solicitacao/createSolicitacao";
 
 const solicitacaoRoutes = Router();
 
@@ -7,7 +8,7 @@ solicitacaoRoutes.get("/", (request, response) => {
 });
 
 solicitacaoRoutes.post("/create", (request, response) => {
-
+    return createSolicitacaoController().handle(request, response);
 });
 
 export { solicitacaoRoutes }
