@@ -16,8 +16,8 @@ class GeTSolicitacaoController {
 
             return response.status(200).json(dados);
         } catch (error) {
-            console.log(error);
-            return response.status(400).json("Algo Aconteceu")
+            console.log(error.message);
+            return response.status(400).json("Algo Aconteceu. " + "ERROR: " + error.message)
         }
     }
 }
