@@ -30,7 +30,9 @@ class SolicitacaoRepository implements ISolicitacaoRepository {
         await this.solicitacao.save(obj)
     }
     async getSolicitacao(id: any): Promise<any> {
-
+        const db = await this.solicitacao.createQueryBuilder("solicitacao");
+        db.where("solicitacao.id = :id", { id: id })
+        return db.getOne();
     }
     async listSolicitacaoCPF(cpf: string): Promise<Solicitacao> {
         const db = await this.solicitacao.createQueryBuilder("solicitacao");

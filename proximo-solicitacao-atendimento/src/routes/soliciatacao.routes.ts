@@ -1,5 +1,6 @@
 import { Router } from "express";
 import listSolicitacaoController from "../app/useCases/solicitacao/listSolicitacao";
+import getSolicitacaoController from "../app/useCases/solicitacao/getSolicitacao";
 import createSolicitacaoController from "../app/useCases/solicitacao/createSolicitacao";
 import listSolicitacaoWEBCHATController from "../app/useCases/solicitacao/listSolicitacaoWEBCHAT";
 import listSolicitacaoTELEFONEController from "../app/useCases/solicitacao/listSolicitacaoWHATSAPP";
@@ -9,6 +10,9 @@ const solicitacaoRoutes = Router();
 
 solicitacaoRoutes.get("/", (request, response) => {
     return listSolicitacaoController().handle(request, response);
+});
+solicitacaoRoutes.post("/", (request, response) => {
+    return getSolicitacaoController().handle(request, response);
 });
 solicitacaoRoutes.post("/create", (request, response) => {
     return createSolicitacaoController().handle(request, response);

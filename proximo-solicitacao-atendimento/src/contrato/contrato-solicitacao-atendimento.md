@@ -14,13 +14,13 @@ POST - /solicitacao
 }
 *Retorna sempre a última solicitacao de atendimento pelo CPF do usuário*
 *Caso o fluxo de atendimento seja o webchat, o usuário será identificado pelo CPF*
-POST - /solicitacao/cpf 
+POST - /solicitacao/webchat 
 {
     "cpf": STRING, 
 }
 *Retorna sempre a última solicitacao de atendimento pelo Nº de telefone*
 *Caso o fluxo de atendimento seja pelo WPP, o usuário será identificado pelo Nº do Telefone*
-POST - /solicitacao/telefone 
+POST - /solicitacao/whatsapp 
 {
     "telefone": STRING,  
 }
