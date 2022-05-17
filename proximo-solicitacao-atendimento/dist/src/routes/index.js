@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+var express_1 = require("express");
+var app_routes_1 = require("./app.routes");
+var soliciatacao_routes_1 = require("./soliciatacao.routes");
+var router = (0, express_1.Router)();
+exports.router = router;
+router.use("/", app_routes_1.appRoutes);
+router.use("/solicitacao", soliciatacao_routes_1.solicitacaoRoutes);

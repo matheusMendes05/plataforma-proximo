@@ -6,12 +6,13 @@ class CreateSolicitacaoController {
 
     async handle(request: Request, response: Response): Promise<Response> {
         try {
-            const { userID, nomeUsuario, cpf, telefone, messengerID, orgao, servico, canal, chatSessionID, status } = request.body;
+            const { userID, nomeUsuario, cpf, telefone, messengerID, orgao, servico, canal, chatSessionID } = request.body;
             const NSolicitacao = this.rendomNSolicitacao();
+            const status = false;
             const dados = await this.solicitacaoUseCase.execute({ userID, NSolicitacao, nomeUsuario, cpf, telefone, messengerID, orgao, servico, canal, chatSessionID, status });
             return response.status(200).json(dados);
         } catch (error) {
-            return response.status(400).json({ error });
+            return response.status(400).json(error);
         }
     }
     // Gerar numero de solicitacao

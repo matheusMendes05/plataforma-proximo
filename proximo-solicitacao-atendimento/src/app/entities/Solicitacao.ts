@@ -9,8 +9,6 @@ class Solicitacao {
     generateUuid() {
         this.id = uuid4().replace(/-/g, '');
     }
-    @Column('uuid')
-    userID: string;
     @Column()
     NSolicitacao: string;
     @Column()

@@ -13,11 +13,6 @@ export class createTablesSolicitacao1652731705355 implements MigrationInterface 
                     generationStrategy: 'uuid'
                 },
                 {
-                    name: "userID",
-                    type: "uuid",
-                    isNullable: false,
-                },
-                {
                     name: "NSolicitacao",
                     type: "varchar",
                     isNullable: false,
@@ -64,7 +59,7 @@ export class createTablesSolicitacao1652731705355 implements MigrationInterface 
                 },
                 {
                     name: "status",
-                    type: "varchar",
+                    type: "boolean",
                     isNullable: false,
                 },
                 {

@@ -7,6 +7,7 @@ import { ISolicitacaoRepository } from "../ISolicitacaoRepository";
 class SolicitacaoRepository implements ISolicitacaoRepository {
     private solicitacao: Repository<Solicitacao>;
     constructor() {
+        this.solicitacao = getRepository(Solicitacao);
     }
 
     async list(): Promise<any> {

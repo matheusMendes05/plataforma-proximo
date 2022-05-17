@@ -35,7 +35,6 @@ POST - /solicitacao/messenger
 POST - /solicitacao/create 
 {
    •"id":            uid,
-    "userID":        uid,      -> *ID usuario gerado pelo Keycloak*
    •"NSolicitacao":  NUMBER,   -> *Atributo gerado pelo microsservico solicitacao-atendimento*
     "nomeUsuario":   STRING,   -> *Nome do usuario logado na Devland*
     "cpf":           STRING,   -> *CPF do usuario logado na Devland*
