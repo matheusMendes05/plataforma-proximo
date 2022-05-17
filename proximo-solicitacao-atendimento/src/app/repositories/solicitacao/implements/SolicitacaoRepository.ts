@@ -10,12 +10,12 @@ class SolicitacaoRepository implements ISolicitacaoRepository {
         this.solicitacao = getRepository(Solicitacao);
     }
 
-    async list(): Promise<any> {
-
+    async list(): Promise<Solicitacao[]> {
+        const db = await this.solicitacao.createQueryBuilder("solicitacao");
+        return db.getMany();
     }
     async create(data): Promise<any> {
         const obj = this.solicitacao.create({
-            userID: data.userID,
             NSolicitacao: data.NSolicitacao,
             nomeUsuario: data.nomeUsuario,
             cpf: data.cpf,
@@ -32,14 +32,26 @@ class SolicitacaoRepository implements ISolicitacaoRepository {
     async getSolicitacao(id: any): Promise<any> {
 
     }
-    async listSolicitacaoCpf(cpf: any): Promise<any> {
-
+    async listSolicitacaoCPF(cpf: string): Promise<Solicitacao> {
+        const db = await this.solicitacao.createQueryBuilder("solicitacao");
+        db.where("solicitacao.cpf = :cpf", { cpf: cpf })
+            .orderBy("solicitacao.criadoEm", "DESC");
+        const solicitacao = await db.getMany();
+        return solicitacao[0];
     }
-    async listSolicitacaoTelefone(nTelefone: any): Promise<any> {
-
+    async listSolicitacaoTELEFONE(telefone: string): Promise<Solicitacao> {
+        const db = await this.solicitacao.createQueryBuilder("solicitacao");
+        db.where("solicitacao.telefone = :telefone", { telefone: telefone })
+            .orderBy("solicitacao.criadoEm", "DESC");
+        const solicitacao = await db.getMany();
+        return solicitacao[0];
     }
-    async listSolicitacaoUserFacebook(userFacebook: any): Promise<any> {
-
+    async listSolicitacaoMESSENGERID(messengerID: string): Promise<any> {
+        const db = await this.solicitacao.createQueryBuilder("solicitacao");
+        db.where("solicitacao.messengerID = :messengerID", { messengerID: messengerID })
+            .orderBy("solicitacao.criadoEm", "DESC");
+        const solicitacao = await db.getMany();
+        return solicitacao[0];
     }
 }
 
