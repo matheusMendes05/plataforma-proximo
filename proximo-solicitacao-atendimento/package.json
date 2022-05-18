@@ -8,8 +8,8 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "build": "tsc",
     "clean": "tsc --build --clean",
-    "test": "jest",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",

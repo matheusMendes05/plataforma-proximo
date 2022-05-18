@@ -7,49 +7,59 @@ ROTAS Solicitacao -> Responsável por manter um histórico de serviços escolhid
 
 *Lista Todas as solicitações de atendimento*
 GET - /solicitacao
+{
+    •"id":            "uid",
+   •"NSolicitacao":  "NUMBER",   -> *Atributo gerado pelo microsservico solicitacao-atendimento*
+    "nomeUsuario":   "STRING",   -> *Nome do usuario logado na Devland*
+    "cpf":           "STRING",   -> *CPF do usuario logado na Devland*
+    "telefone":      "STRING",   -> *Telefone do usuario logado na Devland*
+    "messengerID":   "STRING",   -> *ID USER facebook do usuario logado na Devland*
+    "orgao":         "STRING",   -> *Orgao do Servico escolhido pelo usuario na Devland*
+    "servico":       "STRING",   -> *Servico escolhido pelo usuario logado na Devland*
+    "canal":         "STRING",   -> *Canal escolhido pelo usuario na Devland WEBCHAT/WHATSAPP/MESSENGER*
+    "chatSessionID": "STRING",   -> *ID Sessao chat do usuario (undefined) caso seja WPP/Messenger*
+   •"status":        "BOOLEAN",  -> *Atriubuto que indica se uma solicitação virou um atendimento*
+   •"CriadoEm":      "DateTime", -> *Criado automaticamente na criação da solicitação*
+   •"AlteradoEm":    "DateTime", -> *Criado automaticamente na criação da solicitação*
+}
 *Lista uma solicitacao especifica pelo ID*
 POST - /solicitacao
 {
-    "id": STRING, 
+    "id": "STRING", 
 }
 *Retorna sempre a última solicitacao de atendimento pelo CPF do usuário*
 *Caso o fluxo de atendimento seja o webchat, o usuário será identificado pelo CPF*
 POST - /solicitacao/webchat 
 {
-    "cpf": STRING, 
+    "cpf": "STRING", 
 }
 *Retorna sempre a última solicitacao de atendimento pelo Nº de telefone*
 *Caso o fluxo de atendimento seja pelo WPP, o usuário será identificado pelo Nº do Telefone*
 POST - /solicitacao/whatsapp 
 {
-    "telefone": STRING,  
+    "telefone": "STRING",  
 }
 *Retorna sempre a última solicitacao de atendimento pelo usuário do messenger/facebook*
 *Caso o fluxo de atendimento seja pelo messenger, o usuário será identificado pelo seu id do facebook*
 POST - /solicitacao/messenger 
 {
-    "messengerID": STRING
+    "messengerID": "STRING"
 }
 *Cadastrar uma Solicitacao*
 *Atributo com • Serão criados automaticamente no cadastro de uma soliciatacao*
 POST - /solicitacao/create 
 {
-   •"id":            uid,
-   •"NSolicitacao":  NUMBER,   -> *Atributo gerado pelo microsservico solicitacao-atendimento*
-    "nomeUsuario":   STRING,   -> *Nome do usuario logado na Devland*
-    "cpf":           STRING,   -> *CPF do usuario logado na Devland*
-    "telefone":      STRING,   -> *Telefone do usuario logado na Devland*
-    "messengerID":   STRING,   -> *ID USER facebook do usuario logado na Devland*
-    "orgao":         STRING,   -> *Orgao do Servico escolhido pelo usuario na Devland*
-    "servico":       STRING,   -> *Servico escolhido pelo usuario logado na Devland*
-    "canal":         STRING,   -> *Canal escolhido pelo usuario na Devland WEBCHAT/WHATSAPP/MESSENGER*
-    "chatSessionID"  STRING,   -> *ID Sessao chat do usuario (undefined) caso seja WPP/Messenger*
-   •"status":        BOOLEAN,  -> *Atriubuto que indica se uma solicitação virou um atendimento*
-   •"CriadoEm":      DateTime, -> *Criado automaticamente na criação da solicitação*
-   •"AlteradoEm":    DateTime, -> *Criado automaticamente na criação da solicitação*
+    "nomeUsuario":   "STRING",   
+    "cpf":           "STRING",   
+    "telefone":      "STRING",   
+    "messengerID":   "STRING",   
+    "orgao":         "STRING",   
+    "servico":       "STRING",   
+    "canal":         "STRING",   
+    "chatSessionID": "STRING",   
 }
 *Atualiza o Status de uma solicitacao para TRUE caso uma solicitação se transfome em atendimento*
 UPDATE - /solicitacao/update
 {
-    "status": BOOLEAN,
+    "status": "BOOLEAN",
 }

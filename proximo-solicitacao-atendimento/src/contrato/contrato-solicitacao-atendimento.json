@@ -1,0 +1,51 @@
+## Contrato Solicitacao Atendimento ##
+
+BASE_URL: http://localhost:3333/ 
+
+GET - BASE_URL/solicitacao
+{
+    "id": "uid",
+    "NSolicitacao": "NUMBER",
+    "nomeUsuario": "STRING",
+    "cpf": "STRING",
+    "telefone": "STRING",
+    "messengerID": "STRING",
+    "orgao": "STRING",
+    "servico": "STRING",
+    "canal": "STRING",
+    "chatSessionID": "STRING",
+    "status": "BOOLEAN",
+    "CriadoEm": "DateTime",
+    "AlteradoEm": "DateTime",
+}
+POST - BASE_URL/solicitacao
+{
+    "id": "STRING",
+}
+POST - BASE_URL/solicitacao/webchat 
+{
+    "cpf": "STRING",
+}
+POST - BASE_URL/solicitacao/whatsapp 
+{
+    "telefone": "STRING",
+}
+POST - BASE_URL/solicitacao/messenger 
+{
+    "messengerID": "STRING"
+}
+POST - BASE_URL/solicitacao/create 
+{
+    "nomeUsuario": "STRING",
+    "cpf": "STRING",
+    "telefone": "STRING",
+    "messengerID": "STRING",
+    "orgao": "STRING",
+    "servico": "STRING",
+    "canal": "STRING",
+    "chatSessionID": "STRING",
+}
+UPDATE - BASE_URL/solicitacao/update
+{
+    "status": "BOOLEAN",
+}
