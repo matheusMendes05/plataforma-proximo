@@ -1,10 +1,10 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
 export class createTablesServico1652891997207 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: "SERVICO",
+            name: "servico",
             columns: [
                 {
                     name: "id",
@@ -35,11 +35,68 @@ export class createTablesServico1652891997207 implements MigrationInterface {
                 }
             ]
         }), true);
+
+        await queryRunner.createTable(new Table({
+            name: "solicitar_atendimento",
+            columns: [
+                {
+                    name: "id",
+                    type: "uuid",
+                    isPrimary: true,
+                    isUnique: true,
+                    generationStrategy: 'uuid'
+                },
+                {
+                    name: "usuarioId",
+                    type: "uuid",
+                },
+                {
+                    name: "servicoId",
+                    type: "uuid",
+                },
+                {
+                    name: "NSolicitacao",
+                    type: "varchar",
+                    isNullable: false,
+                },
+                {
+                    name: "status",
+                    type: "varchar",
+                    isNullable: false,
+                },
+                {
+                    name: "canal",
+                    type: "varchar",
+                },
+            ],
+        }), true);
+
+        await queryRunner.createForeignKey(
+            "solicitar_atendimento",
+            new TableForeignKey({
+                columnNames: ["usuarioId"],
+                referencedColumnNames: ["id"],
+                referencedTableName: "usuario",
+                onDelete: "SET NULL",
+                onUpdate: "CASCADE"
+            }),
+        );
+        await queryRunner.createForeignKey(
+            "solicitar_atendimento",
+            new TableForeignKey({
+                columnNames: ["servicoId"],
+                referencedColumnNames: ["id"],
+                referencedTableName: "servico",
+                onDelete: "SET NULL",
+                onUpdate: "CASCADE"
+            }),
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("SERVICO");
-
+        await queryRunner.dropForeignKey("solicitar_atendimento", "usuarioId");
+        await queryRunner.dropForeignKey("solicitar_atendimento", "servicoId");
+        await queryRunner.dropTable("servico");
+        await queryRunner.dropTable("solicitar_atendimento");
     }
-
 }
