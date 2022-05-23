@@ -1,5 +1,6 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid4 } from 'uuid';
+import { Usuario } from "./Usuario";
 
 @Entity('servico')
 class Servico {
@@ -20,6 +21,18 @@ class Servico {
     @UpdateDateColumn({ name: 'alteradoEm' })
     alteradoEm: Date;
 
+
+    @ManyToMany(() => Usuario)
+    @JoinTable({
+        name: "solicitar_atendimento",
+        joinColumn: {
+            name: 'servicoId'
+        },
+        inverseJoinColumn: {
+            name: 'userId'
+        }
+    })
+    servico: Usuario[]
 }
 
 export { Servico }

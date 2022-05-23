@@ -19,15 +19,27 @@ class Usuario {
     @Column()
     messengerID: string
 
-    @ManyToMany(type => Servico)
-    @JoinTable()
-    servicos: Servico[];
+    // @ManyToMany(type => Servico)
+    // @JoinTable()
+    // servicos: Servico[];
 
     @CreateDateColumn({ name: "criadoEm" })
     criadoEm: Date;
 
     @UpdateDateColumn({ name: 'alteradoEm' })
     alteradoEm: Date;
+
+    @ManyToMany(() => Servico)
+    @JoinTable({
+        name: "solicitar_atendimento",
+        joinColumn: {
+            name: 'userId'
+        },
+        inverseJoinColumn: {
+            name: 'servicoId'
+        }
+    })
+    servico: Servico[]
 
 }
 
